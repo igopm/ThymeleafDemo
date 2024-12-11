@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=WINDOWS-1251">
+    <title>Demo Thymeleaf</title>
+    <style>
+        html, body {
+            height: 100%;  /* Забезпечує, щоб фон покривав всю висоту */
+            margin: 0;
+            padding: 0;
+            background-image: url(https://picsum.photos/id/924/3000/2250);
+            background-size: cover; /* Зображення покриває всю сторінку */
+            background-position: center; /* Центрує зображення */
+            background-repeat: no-repeat; /* Забороняє повторення зображення */
+            background-attachment: fixed; /* Фон не прокручується разом з контентом */
+            min-height: 100vh; /* Забезпечує, щоб підвал був внизу */
+        }
+        table {
+            opacity: 0.8; /* 0 - повністю прозоре, 1 - повністю непрозоре */
+            border-collapse: collapse;
+            border: 0;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            background: #f7f7e7;
+        }
+
+        /* Основний вміст сторінки */
+        .content {
+            flex: 1; /* Дозволяє основному контенту займати всю доступну висоту */
+            padding: 20px;
+        }
+
+        /* Стилі для підвалу */
+        footer {
+            background-color: #333; /* Темний фон */
+            color: white; /* Білий текст */
+            min-height: 50px;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        table, th, td {
+            font: 10pt Arial, Helvetica, sans-serif;
+            border: 1px solid #cccc99;
+            padding: 5px;
+        }
+
+        th {
+            font-weight: bold;
+            color: #336699;
+            background: #cccc99;
+        }
+
+        .red-row {
+            background-color: #e17165;
+        }
+
+        .td-align-left {
+            text-align: left;
+        }
+
+        .td-align-right {
+            text-align: right;
+        }
+
+
+        h2 {
+            font: 16pt Arial, Helvetica, sans-serif;
+            text-align: center;
+            color: #336699;
+            margin: 10px 0;
+        }
+
+        .custom-td {
+            width: 100px; /* Ширина 100px */
+            height: 100px; /* Висота 100px */
+            text-align: center; /* Центрування тексту по горизонталі */
+            vertical-align: middle; /* Центрування тексту по вертикалі */
+        }
+
+        .image-size {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #cccc99;
+            color: white;
+            border: none;
+            border-radius: 50%; /* Робимо кнопку круглою */
+            width: 50px;       /* Ширина кнопки */
+            height: 50px;      /* Висота кнопки */
+            cursor: pointer;
+            font-size: 24px;   /* Розмір стрілки */
+            display: none;     /* Сховано за замовчуванням */
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Тінь для ефекту підняття */
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+            line-height: 50px; /* Вирівнюємо стрілку по центру вертикально */
+        }
+
+        .scroll-to-top:hover {
+            background-color: #0056b3;
+            transform: scale(1.1); /* Невелике збільшення при наведенні */
+        }
+    </style>
+    <!--<link rel="stylesheet" type="text/css" href="/src/main/resources/templates/css/styles.css">-->
+</head>
+<body>
+<table summary="Script output">
+    <thead>
+    <tr>
+        <th rowspan="2">#</th>
+        <th rowspan="2">name</th>
+        <th rowspan="2">address</th>
+        <th rowspan="2">company</th>
+        <th rowspan="2">email</th>
+        <th rowspan="2">photo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td class="td-align-left">Bethany Borer</td>
+        <td class="td-align-left">43636 Reynolds Crest</td>
+        <td class="td-align-left">Graham Group</td>
+        <td class="td-align-right">
+            <span>easter.wisoky@yahoo.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/25/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td class="td-align-left">Werner Osinski</td>
+        <td class="td-align-left">7629 Marlena Glens</td>
+        <td class="td-align-left">Beatty-DuBuque</td>
+        <td class="td-align-right">
+            <span>alphonse.bartoletti@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/26/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td class="td-align-left">Alonzo Morar</td>
+        <td class="td-align-left"></td>
+        <td class="td-align-left"></td>
+        <td class="td-align-right">
+            <span></span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="./src/main/resources/templates/images/default-placeholder.jpg"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td class="td-align-left">Tarsha Hyatt</td>
+        <td class="td-align-left">6768 Oralee Plains</td>
+        <td class="td-align-left">Weissnat-Moore</td>
+        <td class="td-align-right">
+            <span class="red-row">erick.jacobs@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/28/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td class="td-align-left">Reinaldo Rau</td>
+        <td class="td-align-left">158 Kirlin Rapids</td>
+        <td class="td-align-left">Kihn Inc</td>
+        <td class="td-align-right">
+            <span>shera.hessel@yahoo.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/29/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td class="td-align-left">Julius Paucek</td>
+        <td class="td-align-left">290 Lorenzo Burg</td>
+        <td class="td-align-left">Walker, Bins and Farrell</td>
+        <td class="td-align-right">
+            <span>trista.reichel@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/30/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td class="td-align-left">Patricia Jaskolski</td>
+        <td class="td-align-left">0399 Emmerich Unions</td>
+        <td class="td-align-left">Schmeler Inc</td>
+        <td class="td-align-right">
+            <span class="red-row">odell.ullrich@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/31/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td class="td-align-left">Claude Rath</td>
+        <td class="td-align-left">88983 Leannon Forks</td>
+        <td class="td-align-left">Macejkovic, Mertz and Wisoky</td>
+        <td class="td-align-right">
+            <span class="red-row">mckinley.west@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/32/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td class="td-align-left">Kasha Hermiston</td>
+        <td class="td-align-left">0629 Alvin Walks</td>
+        <td class="td-align-left">Stamm-Nader</td>
+        <td class="td-align-right">
+            <span class="red-row">levi.dicki@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/33/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td class="td-align-left">Ayesha Cartwright</td>
+        <td class="td-align-left">62653 Hartmann Lights</td>
+        <td class="td-align-left">Kulas Group</td>
+        <td class="td-align-right">
+            <span class="red-row">casey.oconner@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/34/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td class="td-align-left">Ms. Kira Connelly</td>
+        <td class="td-align-left">01306 Ortiz Wells</td>
+        <td class="td-align-left">Marquardt and Sons</td>
+        <td class="td-align-right">
+            <span>freddie.bernhard@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/35/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td class="td-align-left">Jacqualine Williamson</td>
+        <td class="td-align-left">76119 Conception Flats</td>
+        <td class="td-align-left">Douglas, Goodwin and Howell</td>
+        <td class="td-align-right">
+            <span>clemente.weber@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/36/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>13</td>
+        <td class="td-align-left">Ms. Deena Wisozk</td>
+        <td class="td-align-left">89639 Lemke Estates</td>
+        <td class="td-align-left">Bruen-Parisian</td>
+        <td class="td-align-right">
+            <span>britni.rempel@yahoo.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/37/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>14</td>
+        <td class="td-align-left">Miss Gabriella Wunsch</td>
+        <td class="td-align-left">378 Adrian Trafficway</td>
+        <td class="td-align-left">Cummerata and Sons</td>
+        <td class="td-align-right">
+            <span>alvaro.macejkovic@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/38/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>15</td>
+        <td class="td-align-left">Columbus DuBuque MD</td>
+        <td class="td-align-left">8148 Precious Extensions</td>
+        <td class="td-align-left">Moen-Collins</td>
+        <td class="td-align-right">
+            <span>ellie.conroy@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/39/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>16</td>
+        <td class="td-align-left">Tiffiny Buckridge</td>
+        <td class="td-align-left">873 Moen Stravenue</td>
+        <td class="td-align-left">Anderson-Hand</td>
+        <td class="td-align-right">
+            <span>columbus.prosacco@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/40/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>17</td>
+        <td class="td-align-left">Sadie Hyatt IV</td>
+        <td class="td-align-left">390 Benjamin Cape</td>
+        <td class="td-align-left">Leffler-Mayert</td>
+        <td class="td-align-right">
+            <span class="red-row">nathanial.rau@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/41/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>18</td>
+        <td class="td-align-left">Dr. Tony Gusikowski</td>
+        <td class="td-align-left">09027 Abernathy Mews</td>
+        <td class="td-align-left">Borer and Sons</td>
+        <td class="td-align-right">
+            <span class="red-row">laveta.bednar@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/42/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>19</td>
+        <td class="td-align-left">Carroll Gutmann</td>
+        <td class="td-align-left">26499 Streich Squares</td>
+        <td class="td-align-left">Jerde Inc</td>
+        <td class="td-align-right">
+            <span>elanor.roob@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/43/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>20</td>
+        <td class="td-align-left">Ms. Romelia Lowe</td>
+        <td class="td-align-left">1046 Tamie Fords</td>
+        <td class="td-align-left">O&#39;Reilly Inc</td>
+        <td class="td-align-right">
+            <span>eldon.metz@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/44/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>21</td>
+        <td class="td-align-left">Tobie Parisian</td>
+        <td class="td-align-left">23178 Yelena Harbor</td>
+        <td class="td-align-left">Williamson-Hickle</td>
+        <td class="td-align-right">
+            <span>glady.murray@hotmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/45/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>22</td>
+        <td class="td-align-left">Gillian Yost</td>
+        <td class="td-align-left">3696 Tamela Road</td>
+        <td class="td-align-left">Bins-Hilll</td>
+        <td class="td-align-right">
+            <span class="red-row">kennith.labadie@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/46/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>23</td>
+        <td class="td-align-left">Randy Douglas</td>
+        <td class="td-align-left">34251 Olen Shoals</td>
+        <td class="td-align-left">Schoen Inc</td>
+        <td class="td-align-right">
+            <span class="red-row">ernestine.hoeger@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/47/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>24</td>
+        <td class="td-align-left">Isidro Williamson</td>
+        <td class="td-align-left">29902 Cronin Bypass</td>
+        <td class="td-align-left">Erdman-Hintz</td>
+        <td class="td-align-right">
+            <span>zackary.lubowitz@yahoo.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/48/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    <tr>
+        <td>25</td>
+        <td class="td-align-left">Asa Nicolas</td>
+        <td class="td-align-left">402 Dwayne Coves</td>
+        <td class="td-align-left">Kertzmann-Bins</td>
+        <td class="td-align-right">
+            <span class="red-row">terrence.mckenzie@gmail.com</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 src="https://picsum.photos/id/49/100/100"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<footer>
+    <p>&copy; 2024 CS Ltd. All rights reserved.</p>
+</footer>
+</body>
+</html>

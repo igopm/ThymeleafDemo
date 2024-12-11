@@ -1,0 +1,10 @@
+.gradle/
+.idea
+.allure/
+build
+out/
+*.ipr
+*.iml
+PIDFile.csv
+results
+**/current/*

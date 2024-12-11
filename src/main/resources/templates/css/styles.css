@@ -1,0 +1,82 @@
+html, body {
+    height: 100%;  /* Забезпечує, щоб фон покривав всю висоту */
+    margin: 0;
+    padding: 0;
+    background-image: url(https://picsum.photos/1084/1200);  /* Шлях до вашого зображення */
+    background-size: cover; /* Зображення покриває всю сторінку */
+    background-position: center; /* Центрує зображення */
+    background-repeat: no-repeat; /* Забороняє повторення зображення */
+    background-attachment: fixed; /* Фон не прокручується разом з контентом */
+    min-height: 100vh; /* Забезпечує, щоб підвал був внизу */
+}
+table {
+    opacity: 0.8; /* 0 - повністю прозоре, 1 - повністю непрозоре */
+    border-collapse: collapse;
+    border: 0;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    background: #f7f7e7;
+}
+
+/* Основний вміст сторінки */
+.content {
+    flex: 1; /* Дозволяє основному контенту займати всю доступну висоту */
+    padding: 20px;
+}
+
+/* Стилі для підвалу */
+footer {
+    background-color: #333; /* Темний фон */
+    color: white; /* Білий текст */
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+table, th, td {
+    font: 10pt Arial, Helvetica, sans-serif;
+    border: 1px solid #cccc99;
+    padding: 5px;
+}
+
+th {
+    font-weight: bold;
+    color: #336699;
+    background: #cccc99;
+}
+
+.red-row {
+    background-color: #e17165;
+}
+
+.td-align-left {
+    text-align: left;
+}
+
+.td-align-right {
+    text-align: right;
+}
+
+
+h2 {
+    font: 16pt Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #336699;
+    margin: 10px 0;
+}
+
+.custom-td {
+    width: 100px; /* Ширина 100px */
+    height: 100px; /* Висота 100px */
+    text-align: center; /* Центрування тексту по горизонталі */
+    vertical-align: middle; /* Центрування тексту по вертикалі */
+}
+
+.image-size {
+    max-width: 100%;
+    max-height: 100%;
+}

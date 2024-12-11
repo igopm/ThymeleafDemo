@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=WINDOWS-1251">
+    <title>Demo Thymeleaf</title>
+    <style>
+        html, body {
+            height: 100%;  /* Забезпечує, щоб фон покривав всю висоту */
+            margin: 0;
+            padding: 0;
+            background-image: url([[${back.getUrl()}]]);
+            background-size: cover; /* Зображення покриває всю сторінку */
+            background-position: center; /* Центрує зображення */
+            background-repeat: no-repeat; /* Забороняє повторення зображення */
+            background-attachment: fixed; /* Фон не прокручується разом з контентом */
+            min-height: 100vh; /* Забезпечує, щоб підвал був внизу */
+        }
+        table {
+            opacity: 0.8; /* 0 - повністю прозоре, 1 - повністю непрозоре */
+            border-collapse: collapse;
+            border: 0;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            background: #f7f7e7;
+        }
+
+        /* Основний вміст сторінки */
+        .content {
+            flex: 1; /* Дозволяє основному контенту займати всю доступну висоту */
+            padding: 20px;
+        }
+
+        /* Стилі для підвалу */
+        footer {
+            background-color: #333; /* Темний фон */
+            color: white; /* Білий текст */
+            min-height: 50px;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        table, th, td {
+            font: 10pt Arial, Helvetica, sans-serif;
+            border: 1px solid #cccc99;
+            padding: 5px;
+        }
+
+        th {
+            font-weight: bold;
+            color: #336699;
+            background: #cccc99;
+        }
+
+        .red-row {
+            background-color: #e17165;
+        }
+
+        .td-align-left {
+            text-align: left;
+        }
+
+        .td-align-right {
+            text-align: right;
+        }
+
+
+        h2 {
+            font: 16pt Arial, Helvetica, sans-serif;
+            text-align: center;
+            color: #336699;
+            margin: 10px 0;
+        }
+
+        .custom-td {
+            width: 100px; /* Ширина 100px */
+            height: 100px; /* Висота 100px */
+            text-align: center; /* Центрування тексту по горизонталі */
+            vertical-align: middle; /* Центрування тексту по вертикалі */
+        }
+
+        .image-size {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #cccc99;
+            color: white;
+            border: none;
+            border-radius: 50%; /* Робимо кнопку круглою */
+            width: 50px;       /* Ширина кнопки */
+            height: 50px;      /* Висота кнопки */
+            cursor: pointer;
+            font-size: 24px;   /* Розмір стрілки */
+            display: none;     /* Сховано за замовчуванням */
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Тінь для ефекту підняття */
+            transition: background-color 0.3s, transform 0.2s;
+            text-align: center;
+            line-height: 50px; /* Вирівнюємо стрілку по центру вертикально */
+        }
+
+        .scroll-to-top:hover {
+            background-color: #0056b3;
+            transform: scale(1.1); /* Невелике збільшення при наведенні */
+        }
+    </style>
+    <!--<link rel="stylesheet" type="text/css" href="/src/main/resources/templates/css/styles.css">-->
+</head>
+<body>
+<table summary="Script output">
+    <thead>
+    <tr>
+        <th rowspan="2">#</th>
+        <th rowspan="2">name</th>
+        <th rowspan="2">address</th>
+        <th rowspan="2">company</th>
+        <th rowspan="2">email</th>
+        <th rowspan="2">photo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="person, iterStat : ${persons}">
+        <td th:text="${iterStat.count}">#</td>
+        <td class="td-align-left" th:text="${person.name}">Name</td>
+        <td class="td-align-left" th:text="${person.getAddress()}">Address</td>
+        <td class="td-align-left" th:text="${person.getCompany()}">Company</td>
+        <td class="td-align-right">
+            <span th:classappend="${person.getEmail() != null && person.getEmail().contains('gmail') ? 'red-row' : ''}"
+                  th:text="${person.getEmail()}">Email</span>
+        </td>
+        <td class="custom-td">
+            <img class="image-size"
+                 th:src="${person.getImageUrl() != null ? person.getImageUrl() : './src/main/resources/templates/images/default-placeholder.jpg'}"
+                 alt="User Image"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<footer>
+    <p>&copy; 2024 CS Ltd. All rights reserved.</p>
+</footer>
+</body>
+</html>
