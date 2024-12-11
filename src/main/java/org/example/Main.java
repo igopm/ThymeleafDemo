@@ -36,6 +36,6 @@ public class Main {
         html.renderedHtml("personlist");
         System.out.println(html.getHtmlPage());
         html.spoolToOutput();
-        ///new MailSender().sendMail("REPOSITORY XML TESTS RESULTS", html.getHtmlPage());
+        //new MailSender().sendMail("ThymeleafDemo", html.getHtmlPage());
     }
 }
